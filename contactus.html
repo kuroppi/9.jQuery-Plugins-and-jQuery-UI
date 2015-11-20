@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Welcome to Vecta Corp.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/skeleton.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link href="css/jquery-ui.css" rel="stylesheet">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+    <style>
+        .format {
+            margin-top: 1em;
+        }
+        
+        fieldset {
+            border: 0;
+        }
+        
+        label {
+            display: block;
+        }
+        
+        select {
+            width: 200px;
+        }
+        
+        .overflow {
+            height: 200px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <main class="container">
+        <figure class="three columns">
+            <img src="images/logo.gif" class="scale-with-grid" alt="">
+        </figure>
+
+        <nav class="thirteen columns">
+            <ul id="responsive-menu">
+                <li><a class="tooltip" href="index.html" title="Homepage">Home</a></li>
+                <li><a class="tooltip" href="aboutus.html" title="Learn about us, our management team, and our new headquarters.">About Us</a></li>
+                <li><a class="tooltip" href="solutions.html" title="Vecta Corp. offers 3 solutions for prospecting, converting, and retaining customers.">Solutions</a></li>
+                <li><a class="tooltip" href="support.html" title="Our resources are your one-stop shop for vSupport.">Support</a></li>
+                <li><a class="tooltip" href="contactus.html" title="Comments or questions? Contact our sales team.">Contact Us</a></li>
+            </ul>
+        </nav>
+
+        <header class="sixteen columns">
+            <img src="images/header.gif" class="scale-with-grid" alt="">
+        </header>
+
+        <section id="welcome" class="eleven columns">
+            <h4>Contact Us</h4>
+            <form name="contactform" action="contactus.html" method="post">
+                <fieldset>
+                    <legend>Contact a Sales Representative</legend>
+                    Name:
+                    <input type="text" name="name" maxlength="30" required=""> Company Name:
+                    <input type="text" name="companyname" maxlength="30" required=""> Phone:
+                    <input type="tel" name="phonenumber" maxlength="25" required="" pattern="\d{3}[\-]\d{3}[\-]\d{4}" title="Format: 555-555-5555"> Email:
+                    <input type="email" name="email" maxlength="30" required=""> What VectaCorp products are you interested in?
+                    <br>
+                    <div class="format">
+                        <input type="checkbox" id="check">
+                        <div id="format">
+                            <input type="checkbox" id="vProspect" value="vProspect" name="product" checked>
+                            <label for="vProspect">vProspect 2.0</label>
+                            <input type="checkbox" id="vConvert" value="vConvert" name="product">
+                            <label for="vConvert">vConvert 2.0</label>
+                            <input type="checkbox" id="vRetain" value="vRetain" name="product">
+                            <label for="vRetain">vRetain 1.0</label>
+                        </div>
+                    </div>
+
+                    <br> What is your current infrastructure?
+                    <br>
+                    <div id="radio" class="format">
+                        <input type="radio" id="Mac" name="infrastructure" value="Mac" checked>
+                        <label for="Mac">Mac</label>
+                        <input type="radio" id="Linux" name="infrastructure" value="Linux">
+                        <label for="Linux">Linux</label>
+                        <input type="radio" id="Unix" name="infrastructure" value="Unix">
+                        <label for="Unix">Unix</label>
+                        <input type="radio" id="Windows" name="infrastructure" value="Windows">
+                        <label for="Windows">Windows</label>
+                    </div>
+
+                    <br> How many employees do you have?
+                    <br>
+                    <div class="format">
+                        <select name="companysize" id="speed">
+                            <option value="1-10" selected="selected">1-10</option>
+                            <option value="11-100">11-100</option>
+                            <option value="101-1000">101-1000</option>
+                            <option value="More than 1000">More than 1000</option>
+                        </select>
+                    </div>
+
+                    How did you hear about us?
+                    <select name="hearaboutus" multiple="" size="5">
+                        <option value="Magazine Ad" selected="selected">Magazine Ad</option>
+                        <option value="Radio Ad">Radio Ad</option>
+                        <option value="TV Ad">TV Ad</option>
+                        <option value="Word of Mouth">Word of Mouth</option>
+                        <option value="Other">Other</option>
+                    </select>
+
+                    Questions or comments for our sales representatives?
+                    <textarea name="questions" size="30" rows="5"></textarea>
+                    <input type="submit" name="submit" value="Submit Now">
+                </fieldset>
+            </form>
+
+            <div id="dialog" title="Form Submitted">
+                <p>Thank you. Your contact form has been submitted.</p>
+            </div>
+
+        </section>
+
+        <section id="testimonials" class="five columns">
+            <h4>Map</h4>
+            <p>&nbsp;</p>
+
+        </section>
+    </main>
+
+    <script src="external/jquery/jquery.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script>
+        $().ready(function() {
+            $("#tabs").tabs();
+            $(".tooltip").tooltip();
+            $("#radio").buttonset();
+            $("#check").button();
+            $("#format").buttonset();
+            $("#speed").selectmenu();
+            $("#files").selectmenu();
+            $("#number")
+                .selectmenu()
+                .selectmenu("menuWidget")
+                .addClass("overflow");
+            $("#dialog").hide();
+
+            $("input[type=submit]")
+                .button()
+            $('form').submit(function(event) {
+                if (true) {
+                    event.preventDefault();
+                    $("#dialog").dialog();
+                    $("section").hide();
+                    $("#dialog").on("dialogclose", function() {
+                        location.reload();
+                    });
+                }
+            });
+
+            // Hover states on the static widgets
+            $("#dialog-link, #icons li").hover(
+                function() {
+                    $(this).addClass("ui-state-hover");
+                },
+                function() {
+                    $(this).removeClass("ui-state-hover");
+                });
+        });
+
+    </script>
+
+</body>
+
+</html>
